@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import { JazzReactProvider } from "jazz-tools/react";
 
 import type { Route } from "./+types/root";
 import "./root.css";
@@ -42,7 +43,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <JazzReactProvider
+      sync={{
+        peer: import.meta.env.VITE_JAZZ_CLOUD_URL,
+      }}
+    >
+      <Outlet />
+    </JazzReactProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
