@@ -54,7 +54,7 @@ export default function Home() {
         {account.root.projects.map((project) => (
           <li className="flex gap-4 items-center" key={project.$jazz.id}>
             <input
-              className=" rounded px-2 py-1"
+              className="rounded px-2 py-1"
               value={project.name}
               onChange={(e) => {
                 project.$jazz.set("name", e.target.value);
