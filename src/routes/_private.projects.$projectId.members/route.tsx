@@ -3,6 +3,7 @@ import type { Route } from "./+types/route";
 import { useProjectSelector } from "@/contexts/project";
 import { AccountSchema } from "@/schema";
 import { Account } from "jazz-tools";
+import { XIcon } from "lucide-react";
 
 export default function ProjectMembers(props: Route.ComponentProps) {
   const project = useProjectSelector();
@@ -31,10 +32,10 @@ export default function ProjectMembers(props: Route.ComponentProps) {
           <span>{member.role}</span>
 
           <button
-            className="size-6 bg-red-400"
+            className="app-btn-icon app-btn-error"
             onClick={() => handleRemoveMember(member.account)}
           >
-            x
+            <XIcon />
           </button>
         </div>
       ))}

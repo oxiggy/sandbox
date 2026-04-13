@@ -1,6 +1,7 @@
 import { NavLink } from "react-router";
 import type { Route } from "./+types/route";
 import { useAccountSelector } from "@/contexts/account";
+import { XIcon } from "lucide-react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -11,7 +12,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const account = useAccountSelector();
-  console.log("acc", account);
+
   const handleAddProject = () => {
     account.root.projects.$jazz.push({
       name: "test",
@@ -39,10 +40,10 @@ export default function Home() {
               </p>
             </NavLink>
             <button
-              className="size-6 bg-red-400"
+              className="app-btn-icon app-btn-error"
               onClick={() => handleDeleteProject(project.$jazz.id)}
             >
-              x
+              <XIcon />
             </button>
           </li>
         ))}

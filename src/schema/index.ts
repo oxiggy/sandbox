@@ -23,7 +23,20 @@ export const ProjectSchema = co
     }
   });
 
+export const ContactSchema = co
+  .map({
+    name: z.string(),
+    comment: z.string().optional(),
+    get account() {
+      return AccountSchema;
+    },
+  })
+  .withPermissions({
+    onInlineCreate: "sameAsContainer",
+  });
+
 export const AccountRootSchema = co.map({
+  contacts: co.list(ContactSchema),
   projects: co.list(ProjectSchema),
 });
 
@@ -39,6 +52,7 @@ export const AccountSchema = co
   .withMigration((account) => {
     if (!account.$jazz.has("root")) {
       account.$jazz.set("root", {
+        contacts: [],
         projects: [],
       });
     }

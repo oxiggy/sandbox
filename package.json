@@ -10,11 +10,14 @@
     "tunnel": "cloudflared tunnel --url http://localhost:5173/"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-select": "^2.2.6",
     "@react-router/fs-routes": "^7.14.0",
     "@react-router/node": "7.14.0",
     "@react-router/serve": "7.14.0",
     "isbot": "^5.1.36",
     "jazz-tools": "^0.20.17",
+    "lucide-react": "^1.8.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router": "7.14.0"

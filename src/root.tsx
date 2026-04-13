@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { JazzReactProvider } from "jazz-tools/react";
+import { JazzInspector } from "jazz-tools/inspector";
 import { AccountSchema } from "@/schema";
 
 import type { Route } from "./+types/root";
@@ -52,6 +53,7 @@ export default function App() {
       }}
     >
       <Outlet />
+      <JazzInspector />
     </JazzReactProvider>
   );
 }

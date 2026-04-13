@@ -1,5 +1,6 @@
 import type { Route } from "./+types/route";
 import { useProjectSelector } from "@/contexts/project";
+import { CreateInviteLinkDialog } from "./CreateInviteLinkDialog";
 
 export default function ProjectHome(props: Route.ComponentProps) {
   const project = useProjectSelector();
@@ -7,6 +8,8 @@ export default function ProjectHome(props: Route.ComponentProps) {
   return (
     <div>
       <h1>Project here</h1>
+
+      <CreateInviteLinkDialog />
 
       <div>
         <div>Name: {project.name}</div>
