@@ -1,7 +1,6 @@
+import { NavLink } from "react-router";
 import type { Route } from "./+types/route";
-import { Welcome } from "@/welcome/welcome";
 import { useAccountSelector } from "@/contexts/account";
-import { ProjectSchema } from "@/schema";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -14,12 +13,11 @@ export default function Home() {
   const account = useAccountSelector();
   console.log("acc", account);
   const handleAddProject = () => {
-    account.root.projects.$jazz.push(
-      ProjectSchema.create({
-        name: "test",
-        description: "lol",
-      }),
-    );
+    account.root.projects.$jazz.push({
+      name: "test",
+      description: "lol",
+      tasks: [],
+    });
   };
   const handleDeleteProject = (id: string) => {
     account.root.projects.$jazz.remove((item) => item.$jazz.id === id);
@@ -27,14 +25,23 @@ export default function Home() {
 
   return (
     <div>
-      <button onClick={handleAddProject}>Add project</button>
+      <div>
+        <button onClick={handleAddProject}>Add project</button>
+      </div>
+
       <ul>
         {account.root.projects.map((project) => (
-          <li className="flex gap-2" key={project.$jazz.id}>
-            <p>
-              <span>{project.name}</span> <span>{project.$jazz.id}</span>
-            </p>
-            <button onClick={() => handleDeleteProject(project.$jazz.id)}>
+          <li className="flex gap-4" key={project.$jazz.id}>
+            <NavLink to={`projects/${project.$jazz.id}`}>
+              <p>
+                <span>{project.name}</span>{" "}
+                <span className="text-xs">{project.$jazz.id}</span>
+              </p>
+            </NavLink>
+            <button
+              className="size-6 bg-red-400"
+              onClick={() => handleDeleteProject(project.$jazz.id)}
+            >
               x
             </button>
           </li>

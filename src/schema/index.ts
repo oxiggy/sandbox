@@ -1,9 +1,27 @@
 import { co, z } from "jazz-tools";
 
-export const ProjectSchema = co.map({
-  name: z.string(),
-  description: z.string().optional(),
-});
+export const TaskSchema = co
+  .map({
+    name: z.string(),
+  })
+  .withPermissions({
+    onInlineCreate: "sameAsContainer",
+  });
+
+export const ProjectSchema = co
+  .map({
+    name: z.string(),
+    description: z.string().optional(),
+    tasks: co.list(TaskSchema),
+  })
+  .withPermissions({
+    onInlineCreate: "extendsContainer",
+  })
+  .withMigration((project) => {
+    if (!project.$jazz.has("tasks")) {
+      project.$jazz.set("tasks", []);
+    }
+  });
 
 export const AccountRootSchema = co.map({
   projects: co.list(ProjectSchema),
