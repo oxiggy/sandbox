@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { JazzReactProvider } from "jazz-tools/react";
+import { AccountSchema } from "@/schema";
 
 import type { Route } from "./+types/root";
 import "./root.css";
@@ -45,6 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <JazzReactProvider
+      AccountSchema={AccountSchema}
       sync={{
         peer: import.meta.env.VITE_JAZZ_CLOUD_URL,
       }}

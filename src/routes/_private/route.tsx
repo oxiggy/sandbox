@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router";
 import { useIsAuthenticated, usePasskeyAuth } from "jazz-tools/react";
+import { AccountProvider } from "@/contexts/account";
 
 export default function PrivateLayout() {
   const isAuthenticated = useIsAuthenticated();
@@ -9,7 +10,11 @@ export default function PrivateLayout() {
     return <LoginForm />;
   }
 
-  return <Outlet />;
+  return (
+    <AccountProvider>
+      <Outlet />
+    </AccountProvider>
+  );
 }
 
 function LoginForm() {
